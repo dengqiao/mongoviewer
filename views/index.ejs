@@ -1,0 +1,56 @@
+<!DOCTYPE  html>
+<html lang="en" ng-app="app" id="ng-app">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript">
+    if(!location.hash){
+    	location.hash = '<%=host%>';
+    }
+</script>
+<script src="/javascripts/jquery.js" type="text/javascript"></script>
+<script src="/javascripts/angular.min.js" type="text/javascript"></script>
+<script src="/javascripts/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/app.js" type="text/javascript"></script>
+<script src="/javascripts/controllers.js" type="text/javascript"></script>
+<script src="/javascripts/directives.js" type="text/javascript"></script>
+<!--[if lte IE 8]>
+      <script src="/javascripts/json2.js" type="text/javascript"></script>
+      <script>
+        document.createElement('ng-include');
+        document.createElement('ng-pluralize');
+        document.createElement('ng-view');
+      </script>
+
+<![endif]-->
+<title>mongodb viewer base node.js,angularjs,bootstrap</title>
+</head>
+<body>
+	<div class="container">
+	  <div class="row">
+	  <div class="navbar">
+	  <div class="navbar-inner">
+	     <% include menu %>
+	  </div>
+	</div>
+    </div>
+	<div class="row">
+		<ul class="breadcrumb" ng-controller="hostDbsCtrl">
+	       <li ng-repeat="d in result.dbs.databases | filter:dbsquery" >
+
+             <a href="http:#/{{result.host}}/{{d.name}}" ng-click="selectDbs(d.name)" 
+                   ng-hide="d.name==database">{{d.name}}</a>
+             <span ng-show="d.name==database">{{d.name}}</span>
+             <span class="divider">/</span>
+           </li>
+		</ul>
+	</div>
+	
+	<div class="row" ng-view>
+	    
+	</div>
+  </div>
+</body>
+
+</html>

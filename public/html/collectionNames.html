@@ -1,0 +1,8 @@
+<div>
+	<input type="text" class="span2" placeholder="过滤表" ng-model="query">
+</div>
+<ul class="nav nav-list" ng-controller="dbsCtrl">
+	<li ng-repeat="name in collectionNames | filter:query " ng-class="{active: collection==name}">
+       <a href="#/{{host}}/{{database}}/{{name}}?query={{query}}">{{name}}</a>
+    </li>
+</ul>

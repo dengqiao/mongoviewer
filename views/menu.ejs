@@ -1,0 +1,33 @@
+<div class="container">
+  <a class="brand" href="/">
+	  mongo浏览
+  </a>
+
+　<ul class="nav">
+    <%if(hosts.length>0){%>
+		<li class="dropdown <%if(host){%>active<%}%>">
+		  <%if(host){%>
+		      <a  class="dropdown-toggle" data-toggle="dropdown">
+		      	 <%=host%>切换<b class="caret" ></b></a>
+	      <%}else{%>
+	         <a  class="dropdown-toggle" data-toggle="dropdown">
+		      	 选择主机<b class="caret" ></b></a>
+	      <%}%>
+	      <ul class="dropdown-menu">
+	      	<%for(var i=0;i<hosts.length;i++){%>
+	          <li><a href="/<%=hosts[i].name%>#/<%=hosts[i].name%>"><%=hosts[i].name%></a></li>
+	        <%}%>
+	      </ul>
+	      
+	    </li>
+    <%}%>
+	<li  class="<%if(!host){%>active<%}%>">
+  		<a href="/hosts" <%if(!host){%>active<%}%>>主机管理</a>
+  	</li>
+  </ul>
+   <%if(host){%>
+	<form class="navbar-search pull-left">
+		<input type="text" class="search-query span2" placeholder="过滤数据库" ng-model="dbsquery">
+  　</form>
+   <%}%>
+</div>

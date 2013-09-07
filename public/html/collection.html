@@ -1,0 +1,67 @@
+<div class="span2" ng-include="'/html/collectionNames.html'"></div>
+<div class="span10">
+	<div class="row">
+	    <div class="span6" style="border:20px">
+	        <textarea  ng-model="q" id="textarea" style="width:90%" rows="4"></textarea>
+       </div>
+       <div>
+	        <p>
+                查询助记符$gt,$gte,$lt,$lte,$exists,$type,$not,$in,$nin,$ne
+	        </p>
+       </div>
+	</div>
+	<div class="row">
+		 <div class="span5">
+               <button type="submit" class="btn" ng-click="toPage(0,1,q,true)">查询</button>
+	       	   <button type="submit" class="btn" ng-click="toremove(true)">删除</button>
+	       	   <button type="submit" class="btn" ng-click="toinsert(true)">新增</button>
+	       	   <span　style="color:green">{{notice}}</span>
+		 </div>
+		<div class= "span5">
+		     <ul class="pager pull-right" style="margin:10px">
+		      <li style="font-size:16px">({{result.offset+1}}/{{result.count}})</li>
+		      <li>
+			    <button class="btn" ng-click="toPage(result.offset-10,result.count,q)" ng-class="{disabled: result.offset==0}">前一页</button>
+			  </li>
+			  <li>
+			    <button class="btn" ng-click="toPage(result.offset+10,result.count,q)" ng-class="{disabled: result.offset+10>=result.count}">  后一页</button>
+			  </li>
+			</ul>
+	    </div>
+    </div>
+	<div class="well" ng-repeat="data in result.list" style="padding:10px">
+		
+		<p  style="word-wrap: break-word;">
+　　　　　　{{data}}
+		</p>
+	</div>
+	
+</div>
+
+<div class="modal" id="removeModal" ng-show="remove==true">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal" ng-click="toremove(false)">×</a>
+    <h3>确认删除</h3>
+  </div>
+  <div class="modal-body">
+    <p>确认删除数据吗?</p>
+  </div>
+  <div class="modal-footer">
+    <a  class="btn" ng-click="toremove(false)">close</a>
+    <a  class="btn" ng-click="doremove(q)">delete</a>
+  </div>
+</div>
+
+<div class="modal" id="insertModel" ng-show="insert==true">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal" ng-click="toinsert(false)">×</a>
+    <h3>新增</h3>
+  </div>
+  <div class="modal-body">
+    <textarea  ng-model="data" id="textarea"  rows="10" style="width:500px"></textarea>
+  </div>
+  <div class="modal-footer">
+    <a  class="btn" ng-click="toinsert(false)">close</a>
+    <a  class="btn" ng-click="doinsert(data)">insert</a>
+  </div>
+</div>
