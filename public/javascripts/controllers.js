@@ -39,6 +39,11 @@ function collCtrl($scope, $routeParams, $http) {
 	$scope.q = "{\n\n}";
 	$http.get('/' + $routeParams.host + '/' + $routeParams.database + '/' + $routeParams.collection)
 	   .success(function(data) {
+	   	if(data.err_msg){
+	   		console.log(data.err_msg);
+	   		$scope.notice = data.err_msg;
+	   		return;
+	   	}
 		for(var i=0;i<data.list.length;i++){
 			data.list[i] = decode(JSON.stringify(data.list[i], null, 4));
 		}
@@ -63,6 +68,11 @@ function collCtrl($scope, $routeParams, $http) {
 		$http.get('/' + $scope.host + '/' + $scope.database + '/' + $scope.collection+
 			'?offset='+offset+'&q='+encodeURIComponent(q))
 			.success(function(data) {
+				if(data.err_msg){
+			   		console.log(data.err_msg);
+			   		$scope.notice = data.err_msg;
+			   		return;
+			   	}
 				$scope.result = data;
 			});
 	};

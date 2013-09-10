@@ -112,7 +112,7 @@ module.exports = function(app) {
 				q = JSON.parse(req.query.q);
 				utils.jsonConvert(q);
 			} catch (err) {
-				return next(err);
+				return res.json({err_msg:err.toString()});
 			}
 		}
 		var offset = parseInt(req.query.offset || 0, 10);

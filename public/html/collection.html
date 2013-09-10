@@ -5,19 +5,20 @@
 	        <textarea  ng-model="q" id="textarea" style="width:90%" rows="4"></textarea>
        </div>
        <div>
-	        <p>
-                查询助记符$gt,$gte,$lt,$lte,$exists,$type,$not,$in,$nin,$ne
+	        <p style="word-wrap: break-word;">
+                查询助记符$gt,$gte,$lt,$lte,$exists,$type,$not,$in,$nin,$ne,
+                模糊匹配{"name":"/dq/"},ObjectId查询"_id":"ObjectId('???')"
 	        </p>
        </div>
 	</div>
 	<div class="row">
-		 <div class="span5">
+		 <div class="span6">
                <button type="submit" class="btn" ng-click="toPage(0,1,q,true)">查询</button>
 	       	   <button type="submit" class="btn" ng-click="toremove(true)">删除</button>
 	       	   <button type="submit" class="btn" ng-click="toinsert(true)">新增</button>
 	       	   <span　style="color:green">{{notice}}</span>
 		 </div>
-		<div class= "span5">
+		<div class= "span4">
 		     <ul class="pager pull-right" style="margin:10px">
 		      <li style="font-size:16px">({{result.offset+1}}/{{result.count}})</li>
 		      <li>

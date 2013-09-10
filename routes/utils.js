@@ -10,7 +10,14 @@ exports.jsonConvert = function(json) {
 				var reg = /ObjectId\('(\w{24})'\)/.exec(value);
 				if (reg !== null && reg.length === 2) {
 					obj[key] = mongo.ObjectID.createFromHexString(reg[1]);
+					continue;
 				}
+				reg = /^\/(.*)\/$/.exec(value);
+				if (reg !== null && reg.length === 2) {
+					obj[key] = new RegExp(reg[1]);
+					continue;
+				}
+
 			}
 			if(type === 'object'){
 				convert(value);
